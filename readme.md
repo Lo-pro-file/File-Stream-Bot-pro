@@ -21,44 +21,23 @@
 
 <hr>
 
-### Please star this repository to appreciate my efforts and follow me so you that you get to know whenever I release a new Project!
+#### Please give a ⭐ to this repository to appreciate my efforts and follow me so you that you get to know whenever I release a new Project!
+
+#### If you like my work and would like to hire/sponsor me [click here](https://t.me/+KvjFjOWicuZmOTQx).
+
 <hr>
+
 ## 🍁 About This Bot :
 
 ![streamingfilestreambot-professional-live_1](https://user-images.githubusercontent.com/88939380/137127129-a86fc939-2931-4c66-b6f6-b57711a9eab7.png)
 
 </p>
 <p align='center'>
-    This bot will give you stream links for Telegram files without the need of waiting till the download completes
+    This bot will give you streamable download links for Telegram files without the need of waiting till the download completes.
 </p>
 
 
-## ♢ How to make your own:
-##### Incase you are having trouble deploying bot you may hire us we to get the work done at reasonable price.[click here](https://t.me/+KvjFjOWicuZmOTQx)
-
-
-#### ♢ Click on This drop down menu to get more details
 <br>
-<details>
-  <summary><b>Deploy on Heroku:</b></summary>
-
-
-1. Fork This Repo
-2. Click on the button to Deploy and follow steps
-
-<h4> So Follow Above Steps 👆 and then deploy other wise bot won't work</h4>
-
-Press the below button to Fast deploy on Heroku/Raiwlay
-Either you could locally host or deploy on [Heroku](https://heroku.com)
-### 💜 Heroku
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy/)
-
-<br>
-
-
-then goto the <a href="#mandatory-vars">variables tab</a> for more info on setting up environmental variables. </details>
-
 <details>
   <summary><b>Features:</b></summary>
   
@@ -82,7 +61,23 @@ then goto the <a href="#mandatory-vars">variables tab</a> for more info on setti
 </details>
 <details>
   <summary><b>Host it on VPS Locally :</b></summary>
+  <details>
+  <summary><b>Deploy on Ubuntu<b></summary>
+  If you are on Ubuntu, there's a 10 times easier way to deploy this bot. Just copy the command below and you're good to go.
+  
+  ```sh
+  apt-get update -y && apt-get upgrade -y && apt-get install curl -y && curl https://raw.githubusercontent.com/adarsh-goel/FileStreamBot-pro/main/script.sh -o script.sh && bash script.sh
+  ```
 
+  and to stop the whole bot,
+ do <kbd>CTRL</kbd>+<kbd>C</kbd>
+
+  </details>
+
+  <details>
+  <summary><b>Deploy on Windows or other plataform<b></summary>
+  
+  You should make sure you have Python 3.6+ installed on your PC, then clone this repo and run the following commands in a terminal:
 
 ```py
 git clone https://github.com/adarsh-goel/filestreambot-pro
@@ -93,8 +88,12 @@ pip install -r requirements.txt
 python3 -m Adarsh
 ```
 
+
+
 and to stop the whole bot,
  do <kbd>CTRL</kbd>+<kbd>C</kbd>
+
+ </details>
 
 Setting up things
 
