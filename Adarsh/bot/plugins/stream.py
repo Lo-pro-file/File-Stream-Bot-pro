@@ -26,13 +26,12 @@ async def login_handler(c: Client, m: Message):
         try:
             ag = await m.reply_text("Now send me password.\n\n If You don't know check the MY_PASS Variable in heroku \n\n(You can use /cancel command to cancel the process)")
             _text = await c.listen(m.chat.id, filters=filters.text, timeout=90)
-            if _text.text:
-                textp = _text.text
-                if textp == "/cancel":
-                   await ag.edit("Process Cancelled Successfully")
-                   return
-            else:
+            if not _text.text:
                 return
+            textp = _text.text
+            if textp == "/cancel":
+               await ag.edit("Process Cancelled Successfully")
+               return
         except TimeoutError:
             await ag.edit("I can't wait more for password, try again")
             return
@@ -49,7 +48,7 @@ async def login_handler(c: Client, m: Message):
 async def private_receive_handler(c: Client, m: Message):
     if MY_PASS:
         check_pass = await pass_db.get_user_pass(m.chat.id)
-        if check_pass== None:
+        if check_pass is None:
             await m.reply_text("Login first using /login cmd \n don\'t know the pass? request it from the Developer")
             return
         if check_pass != MY_PASS:
@@ -68,7 +67,7 @@ async def private_receive_handler(c: Client, m: Message):
                 await c.send_message(
                     chat_id=m.chat.id,
                     text="You are banned!\n\n  **Cᴏɴᴛᴀᴄᴛ Dᴇᴠᴇʟᴏᴘᴇʀ [Adarsh Goel](https://github.com/adarsh-goel) ʜᴇ Wɪʟʟ Hᴇʟᴘ Yᴏᴜ**",
-                    
+
                     disable_web_page_preview=True
                 )
                 return 
@@ -83,7 +82,7 @@ async def private_receive_handler(c: Client, m: Message):
                         ]
                     ]
                 ),
-                
+
             )
             return
         except Exception as e:
@@ -91,14 +90,14 @@ async def private_receive_handler(c: Client, m: Message):
             await c.send_message(
                 chat_id=m.chat.id,
                 text="**Sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ Wʀᴏɴɢ. Cᴏɴᴛᴀᴄᴛ ᴍʏ ʙᴏss** [Adarsh Goel](https://github.com/adarsh-goel)",
-                
+
                 disable_web_page_preview=True)
             return
     try:
         log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-       
+
         msg_text ="""<i><u>𝗬𝗼𝘂𝗿 𝗟𝗶𝗻𝗸 𝗚𝗲𝗻𝗲𝗿𝗮𝘁𝗲𝗱 !</u></i>\n\n<b>📂 Fɪʟᴇ ɴᴀᴍᴇ :</b> <i>{}</i>\n\n<b>📦 Fɪʟᴇ ꜱɪᴢᴇ :</b> <i>{}</i>\n\n<b>📥 Dᴏᴡɴʟᴏᴀᴅ :</b> <i>{}</i>\n\n<b> 🖥WATCH  :</b> <i>{}</i>\n\n<b>🚸 Nᴏᴛᴇ : LINK WON'T EXPIRE TILL I DELETE</b>"""
 
         await log_msg.reply_text(text=f"**RᴇQᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
@@ -119,17 +118,17 @@ async def private_receive_handler(c: Client, m: Message):
 async def channel_receive_handler(bot, broadcast):
     if MY_PASS:
         check_pass = await pass_db.get_user_pass(broadcast.chat.id)
-        if check_pass == None:
+        if check_pass is None:
             await broadcast.reply_text("Login first using /login cmd \n don\'t know the pass? request it from developer!")
             return
         if check_pass != MY_PASS:
             await broadcast.reply_text("Wrong password, login again")
             await pass_db.delete_user(broadcast.chat.id)
-            
+
             return
     if int(broadcast.chat.id) in Var.BANNED_CHANNELS:
         await bot.leave_chat(broadcast.chat.id)
-        
+
         return
     try:
         log_msg = await broadcast.forward(chat_id=Var.BIN_CHANNEL)
