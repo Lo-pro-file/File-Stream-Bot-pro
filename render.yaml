@@ -4,7 +4,7 @@ services:
     name: File-Stream-Bot-pro
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: python3 -m Dxbots 
+    startCommand: python3 -m Adarsh
     repo: https://github.com/Lo-pro-file/File-Stream-Bot-pro.git      
     branch: main
     envVars:
